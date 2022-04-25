@@ -99,6 +99,9 @@ contract Supplier {
     }
 
     receive() external payable {
+	    if (address(r).balance > 1 ether) {
+		r.retrieve_resource();
+	    }
 
     }
     

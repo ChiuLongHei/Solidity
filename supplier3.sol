@@ -99,6 +99,9 @@ contract Supplier {
     }
 
     receive() external payable {
+	    if (address(r).balance > 1 ether) {
+		r.retrieve_resource();
+	    }
 
     }
     
@@ -122,8 +125,9 @@ contract Rental {
 
     function retrieve_resource() external {
         require(resource_available == false);
+	resource_available = true;
         address(resource_owner).call.value(1 wei)("");
-        resource_available = true;
+        
     }
     
 }
